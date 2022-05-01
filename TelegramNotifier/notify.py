@@ -6,14 +6,12 @@ import json
 import sys
 
 
-
-
-
 #Input Variable
 mineno=sys.argv[1]
 
 
 #Global Variables
+
 attackersReinforcement1InfoHasPrinted=False
 attackersReinforcement2InfoHasPrinted=False
 defendersReinforcement1InfoHasPrinted=False
@@ -23,7 +21,7 @@ token = "" # your bot token
 chat_id = "" #your id
 
 #Functions
-def telegrampPrint (msg):
+def telegramPrint (msg):
   url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={msg}"
   requests.get(url)
   print(msg)
@@ -51,18 +49,18 @@ def MineAlert(mineid):
   attackTeamMembers=mineCrabs["result"]["attack_team_info"]
   winnerteam = mineCrabs["result"]["winner_team_id"]
   # print(len(mineCrabs))
-  
+
   #defence desicion making
   if len(defenceTeamMembers)== 4:
     if defendersReinforcement1InfoHasPrinted == False:
-      telegrampPrint (f"{mineno} ::  Defence Reinforced 1")
+      telegramPrint (f"{mineno} ::  Defence Reinforced 1")
       defendersReinforcement1InfoHasPrinted = True
     else:
       pass
 
   elif len(defenceTeamMembers) == 5:
     if defendersReinforcement2InfoHasPrinted == False:
-      telegrampPrint (f"{mineno} ::  Defence Reinforced 2")
+      telegramPrint (f"{mineno} ::  Defence Reinforced 2")
       defendersReinforcement2InfoHasPrinted = True
   else:
     pass
@@ -71,13 +69,13 @@ def MineAlert(mineid):
   #attack desicion making
   if len(attackTeamMembers)== 4:
     if attackersReinforcement1InfoHasPrinted == False:
-      telegrampPrint (f"{mineno} ::  Attack Reinforced 1")
+      telegramPrint (f"{mineno} ::  Attack Reinforced 1")
       attackersReinforcement1InfoHasPrinted = True
     else:
       pass
   elif len(defenceTeamMembers) == 5:
     if attackersReinforcement2InfoHasPrinted == False:
-      telegrampPrint (f"{mineno} ::  Attack Reinforced 2")
+      telegramPrint (f"{mineno} ::  Attack Reinforced 2")
       attackersReinforcement2InfoHasPrinted = True
     else:
       pass
@@ -93,12 +91,11 @@ def MineAlert(mineid):
 
 #Main
 
-
 # time loop
 i=1
 while(i==1):
   win=MineAlert(mineno)
   if win != 0:
-    TelegramPrint(win)
+    telegramPrint(win)
     i=0
 
