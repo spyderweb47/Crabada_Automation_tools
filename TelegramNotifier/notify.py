@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#path "D:\Financial\Crabada\programs"
-
 #headers / Library
 import requests
 import json
@@ -16,7 +14,6 @@ mineno=sys.argv[1]
 
 
 #Global Variables
-
 attackersReinforcement1InfoHasPrinted=False
 attackersReinforcement2InfoHasPrinted=False
 defendersReinforcement1InfoHasPrinted=False
@@ -54,6 +51,7 @@ def MineAlert(mineid):
   attackTeamMembers=mineCrabs["result"]["attack_team_info"]
   winnerteam = mineCrabs["result"]["winner_team_id"]
   # print(len(mineCrabs))
+  
   #defence desicion making
   if len(defenceTeamMembers)== 4:
     if defendersReinforcement1InfoHasPrinted == False:
@@ -70,7 +68,7 @@ def MineAlert(mineid):
     pass
 
 
-
+  #attack desicion making
   if len(attackTeamMembers)== 4:
     if attackersReinforcement1InfoHasPrinted == False:
       telegrampPrint (f"{mineno} ::  Attack Reinforced 1")
